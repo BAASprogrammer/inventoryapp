@@ -1,6 +1,6 @@
 # InventoryApp — Sistema de Gestión de Inventario
 
-Aplicación fullstack para administrar productos y clientes con operaciones CRUD, paginación y subida de imágenes.
+Aplicación fullstack para administrar productos y clientes con operaciones CRUD, paginación y subida de imágenes. Creado por [BAASprogrammer](https://github.com/BAASprogrammer).
 
 ## Stack
 
