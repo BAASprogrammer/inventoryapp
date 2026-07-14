@@ -43,7 +43,6 @@ NET/
 | GET | `/api/products` | Lista productos (paginado) |
 | POST | `/api/products` | Crea producto |
 | PUT | `/api/products/{id}` | Actualiza producto |
-| PATCH | `/api/products/{id}/sell` | Reduce stock |
 | DELETE | `/api/products/{id}` | Elimina producto |
 | GET | `/api/customers` | Lista clientes |
 | POST | `/api/customers` | Crea cliente |
