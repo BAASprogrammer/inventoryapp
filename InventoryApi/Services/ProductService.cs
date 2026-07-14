@@ -58,26 +58,6 @@ namespace InventoryApi.Services
             };
         }
 
-        public async Task<ProductDto> SellProductAsync(int id, int quantity)
-        {
-            var product = await _productRepository.GetByIdAsync(id);
-            if (product == null) throw new KeyNotFoundException("Producto no encontrado");
-            if (product.Stock < quantity) throw new InvalidOperationException("Stock insuficiente");
-
-            product.Stock -= quantity;
-            await _productRepository.UpdateAsync(product);
-            await _productRepository.SaveChangesAsync();
-
-            return new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Stock = product.Stock,
-                Image = product.Image
-            };
-        }
-
         public async Task<ProductDto> UpdateProductAsync(int id, UpdateProductDto dto)
         {
             var product = await _productRepository.GetByIdAsync(id);

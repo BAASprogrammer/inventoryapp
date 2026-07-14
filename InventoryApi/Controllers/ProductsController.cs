@@ -34,24 +34,6 @@ namespace InventoryApi.Controllers
             }
         }
 
-        [HttpPatch("{id}/sell")]
-        public async Task<IActionResult> SellProduct(int id, SellProductDto dto)
-        {
-            try
-            {
-                var product = await _productService.SellProductAsync(id, dto.Quantity);
-                return Ok(product);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromForm] UpdateProductDto dto, [FromForm] IFormFile? imageFile)
         {
