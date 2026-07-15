@@ -12,6 +12,8 @@ namespace InventoryApi.Controllers
 
         public ProductsController(IProductService productService) => _productService = productService;
 
+        //GET api/products
+        //Returns all products with pagination
         [HttpGet]
         public async Task<IActionResult> GetProducts(int page = 1, int pageSize = 6)
         {
@@ -19,6 +21,8 @@ namespace InventoryApi.Controllers
             return Ok(result);
         }
 
+        //POST api/products
+        //Creates a new product
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromForm] CreateProductDto dto, [FromForm] IFormFile? imageFile)
         {
@@ -34,6 +38,8 @@ namespace InventoryApi.Controllers
             }
         }
 
+        //PUT api/products/{id}
+        //Updates an existing product
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromForm] UpdateProductDto dto, [FromForm] IFormFile? imageFile)
         {
@@ -53,6 +59,8 @@ namespace InventoryApi.Controllers
             }
         }
 
+        //DELETE api/products/{id}
+        //Deletes a product
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -67,6 +75,7 @@ namespace InventoryApi.Controllers
             }
         }
 
+        //Helper method to save image
         private async Task<string?> SaveImageAsync(IFormFile? imageFile)
         {
             if (imageFile == null || imageFile.Length == 0) return null;

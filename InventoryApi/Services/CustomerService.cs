@@ -11,6 +11,7 @@ namespace InventoryApi.Services
 
         public CustomerService(ICustomerRepository customerRepository) => _customerRepository = customerRepository;
 
+        //Get all customers with pagination
         public async Task<IEnumerable<CustomerDto>> GetCustomersAsync(int page = 1, int pageSize = 10)
         {
             var customers = await _customerRepository.GetAllAsync();
@@ -26,6 +27,7 @@ namespace InventoryApi.Services
             });
         }
 
+        //Create customer
         public async Task<CustomerDto> CreateCustomerAsync(CreateCustomerDto dto)
         {
             if (string.IsNullOrEmpty(dto.Name)) throw new ArgumentException("Nombre es requerido");
@@ -59,6 +61,7 @@ namespace InventoryApi.Services
             };
         }
 
+        //Update customer
         public async Task<CustomerDto> UpdateCustomerAsync(int id, UpdateCustomerDto dto)
         {
             if (string.IsNullOrEmpty(dto.Name)) throw new ArgumentException("Nombre es requerido");
@@ -84,6 +87,7 @@ namespace InventoryApi.Services
             };
         }
 
+        //Delete customer
         public async Task DeleteCustomerAsync(int id)
         {
             var customer = await _customerRepository.GetByIdAsync(id);

@@ -10,6 +10,7 @@ namespace InventoryApi.Services
 
         public ProductService(IProductRepository productRepository) => _productRepository = productRepository;
 
+        //Get all products with pagination
         public async Task<PagedResult<ProductDto>> GetProductsAsync(int page, int pageSize)
         {
             var (items, totalCount) = await _productRepository.GetPagedAsync(page, pageSize);
@@ -32,6 +33,7 @@ namespace InventoryApi.Services
             };
         }
 
+        //Create product
         public async Task<ProductDto> CreateProductAsync(CreateProductDto dto)
         {
             if (string.IsNullOrEmpty(dto.Name) || string.IsNullOrEmpty(dto.Image) || dto.Price <= 0 || dto.Stock < 0)
@@ -58,6 +60,7 @@ namespace InventoryApi.Services
             };
         }
 
+        //Update product
         public async Task<ProductDto> UpdateProductAsync(int id, UpdateProductDto dto)
         {
             var product = await _productRepository.GetByIdAsync(id);
@@ -82,6 +85,7 @@ namespace InventoryApi.Services
             };
         }
 
+        //Delete product
         public async Task DeleteProductAsync(int id)
         {
             var product = await _productRepository.GetByIdAsync(id);

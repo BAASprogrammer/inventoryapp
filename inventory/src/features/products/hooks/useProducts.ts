@@ -15,6 +15,7 @@ export function useProducts() {
   const [modal, setModal] = useState<{ title: string, message: string } | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
+  //Edit product
   const editProduct = (id: number) => {
     const product = products.find(p => p.id === id);
     if (product) {
@@ -26,6 +27,7 @@ export function useProducts() {
     setEditingId(id);
   };
 
+  //Save product
   const saveProduct = async (id: number) => {
     if (!validateProduct()) return;
     try {
@@ -41,7 +43,7 @@ export function useProducts() {
       setModal({ title: "Error", message: err.message });
     }
   }
-
+  //Delete product
   const deleteProduct = async (id: number) => {
     try {
       setDeletingId(id);
@@ -54,7 +56,7 @@ export function useProducts() {
       setDeletingId(null);
     }
   };
-
+  //Load products
   const loadProducts = async () => {
     setLoading(true);
     try {
@@ -68,7 +70,7 @@ export function useProducts() {
       setLoading(false);
     }
   };
-
+  //Create product
   const createProduct = async () => {
     if (!validateProduct()) return;
     try {
@@ -83,7 +85,7 @@ export function useProducts() {
       setModal({ title: "Crear Producto", message: "Error al crear el producto. Verifica los datos." });
     }
   };
-
+  //Validate product
   const validateProduct = () => {
     if (!name.trim()) {
       setModal({ title: "Crear Producto", message: "El nombre del producto es obligatorio." });
@@ -103,7 +105,7 @@ export function useProducts() {
     }
     return true;
   }
-
+  //Load products on mount
   useEffect(() => {
     loadProducts();
   }, [currentPage]);

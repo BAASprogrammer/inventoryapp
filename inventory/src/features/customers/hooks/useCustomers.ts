@@ -14,6 +14,7 @@ export function useCustomers() {
     title: string, message: string, id?: number | null, type?: 'confirm' | 'error' | 'success' | 'info'
   } | null>(null);
 
+  //Load customers
   const loadCustomers = async () => {
     setLoading(true);
     try {
@@ -26,6 +27,7 @@ export function useCustomers() {
     }
   };
 
+  //Create customer
   const createCustomer = async () => {
     if (!validateCustomer()) return;
     try {
@@ -40,6 +42,7 @@ export function useCustomers() {
     }
   };
 
+  //Update customer
   const updateCustomer = async (customer: Customer) => {
     try {
       await CustomerService.update(customer);
@@ -51,10 +54,12 @@ export function useCustomers() {
     }
   };
 
+  //Delete customer
   const deleteCustomer = (customer: Customer) => {
     setModal({ title: "Eliminar Cliente", message: "¿Está seguro de que desea eliminar el cliente " + customer.name + "?", id: customer.id, type: "confirm" });
   };
 
+  //Confirm delete
   const confirmDelete = async (id: number | null) => {
     try {
       setModal(null);
@@ -67,6 +72,7 @@ export function useCustomers() {
     }
   };
 
+  //Validate customer
   const validateCustomer = (): boolean => {
     if (name.trim() === "") {
       setModal({ title: "Crear Cliente", message: "El nombre del cliente es obligatorio.", type: "error" });
@@ -91,6 +97,7 @@ export function useCustomers() {
     return true;
   };
 
+  //Load customers on mount
   useEffect(() => {
     loadCustomers();
   }, []);

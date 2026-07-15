@@ -12,6 +12,8 @@ namespace InventoryApi.Controllers
 
         public CustomersController(ICustomerService customerService) => _customerService = customerService;
 
+        //GET api/customers
+        //Returns all customers with pagination
         [HttpGet]
         public async Task<IActionResult> GetCustomers(int page = 1, int pageSize = 10)
         {
@@ -19,6 +21,8 @@ namespace InventoryApi.Controllers
             return Ok(customers);
         }
 
+        //POST api/customers
+        //Creates a new customer
         [HttpPost]
         public async Task<IActionResult> CreateCustomer(CreateCustomerDto dto)
         {
@@ -33,6 +37,8 @@ namespace InventoryApi.Controllers
             }
         }
 
+        //PUT api/customers/{id}
+        //Updates an existing customer
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCustomer(int id, UpdateCustomerDto dto)
         {
@@ -51,6 +57,8 @@ namespace InventoryApi.Controllers
             }
         }
 
+        //DELETE api/customers/{id}
+        //Deletes a customer
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
