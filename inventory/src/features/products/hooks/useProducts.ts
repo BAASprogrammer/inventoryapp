@@ -89,6 +89,10 @@ export function useProducts() {
       setModal({ title: "Crear Producto", message: "El nombre del producto es obligatorio." });
       return false;
     }
+    if (!imageFile) {
+      setModal({ title: "Crear Producto", message: "La imagen del producto es obligatoria." });
+      return false;
+    }
     if (price <= 0) {
       setModal({ title: "Crear Producto", message: "El precio debe ser mayor a 0." });
       return false;

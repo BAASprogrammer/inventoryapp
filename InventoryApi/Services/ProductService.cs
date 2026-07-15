@@ -34,7 +34,7 @@ namespace InventoryApi.Services
 
         public async Task<ProductDto> CreateProductAsync(CreateProductDto dto)
         {
-            if (string.IsNullOrEmpty(dto.Name) || dto.Price <= 0 || dto.Stock < 0)
+            if (string.IsNullOrEmpty(dto.Name) || string.IsNullOrEmpty(dto.Image) || dto.Price <= 0 || dto.Stock < 0)
                 throw new ArgumentException("Se deben rellenar todos los campos del producto.");
 
             var product = new Product
